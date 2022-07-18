@@ -12,6 +12,13 @@ export const FeedbackContainer = styled.div`
     font-size: 24px;
     color: #38446d;
   }
+
+  @media screen and (max-width: 768px) {
+    .heading {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -54,7 +61,7 @@ export const RateContainer = styled(FlexContainer)`
     justify-content: center;
     align-items: center;
     .heading {
-      font-size: 16px;
+      font-size: 14px;
       margin-bottom: 10px;
     }
   }

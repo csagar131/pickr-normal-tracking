@@ -61,6 +61,8 @@ export const Container = styled.div`
     align-items: flex-start;
 
     .supportContainer {
+      display : flex !important;
+      justify-content :end !important;
       width: 100%;
       margin-top: 30px;
       .expected {
@@ -81,6 +83,7 @@ export const Container = styled.div`
     }
     .support {
       font-size: 12px;
+      
       /* right: 90px; */
     }
   }

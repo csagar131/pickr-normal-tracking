@@ -9,7 +9,7 @@ export const Container = styled.div`
   }
   @media screen and (max-width: 648px) {
     width: 100%;
-    padding: 30px 15px;
+    padding: 30px 0px;
     .search-container {
       flex-direction: column;
     }
@@ -25,6 +25,11 @@ export const MainContainer = styled.div`
   }
   .order-info-container {
     margin-top: 30px;
+  }
+  @media screen and (max-width: 648px) {
+    
+    padding: 30px 12px;
+    
   }
 `;
 

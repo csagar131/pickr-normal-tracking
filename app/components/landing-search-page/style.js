@@ -43,8 +43,18 @@ export const MainContainer = styled.div`
       display: flex;
       flex-direction: column;
     }
+
+    .title {
+      font-size: 20px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+    }
+
   }
 `;
+
 
 export const LandingSearchPageContainer = styled.div`
   display: flex;

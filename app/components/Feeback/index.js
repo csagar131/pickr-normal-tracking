@@ -74,7 +74,7 @@ const Feedback = ({ data }) => {
       message.success("Feedback submitted successfully!");
       setIsModalVisible(false);
       setRating(null);
-      setCustomerFeedback(null);
+      setCustomerFeedback("");
       setDeliveryRating(null);
       setFeedbackSubmitted(true);
     } else {
