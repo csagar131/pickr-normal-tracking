@@ -149,19 +149,17 @@ const OrderInfocontainer = ({
         )}
       </MainContainer>
       {isMultiOrder && (
-        <a href={status === "DL" ? `#${id}` : null}>
-          <div
-            style={{ textAlign: "center", marginTop: "-15px" }}
-            onClick={() => {
-              setIsViewMore(!isViewMore);
-            }}
-          >
-            <ViewButton type="primary" size="large">
-              {isViewMore ? "Hide" : "View"} Details{" "}
-              {isViewMore ? <UpOutlined /> : <DownOutlined />}
-            </ViewButton>
-          </div>
-        </a>
+         <div
+         style={{ textAlign: "center", marginTop: "-15px" }}
+       >
+         <ViewButton type="primary" size="large" onClick={(e) =>{
+           setIsViewMore(!isViewMore)
+           e.target.scrollIntoView({behavior: "smooth",  inline: "nearest"})
+         }}>
+           {isViewMore ? "Hide" : "View"} Details{" "}
+           {isViewMore ? <UpOutlined /> : <DownOutlined />}
+         </ViewButton>
+       </div>
       )}
       <div>{status == "DL" && <Feedback data={data} />}</div>
       {(isViewMore || (!isMultiOrder && !isViewMore)) && (
