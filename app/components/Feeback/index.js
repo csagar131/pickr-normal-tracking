@@ -30,6 +30,7 @@ const Feedback = ({ data }) => {
   const [rating, setRating] = useState(null);
   const [type, setType] = useState(null);
   const [form] = Form.useForm();
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
   const handleSubmit = async () => {
     if (!rating && !deliveryRating && !customerFeedback) {
@@ -51,14 +52,14 @@ const Feedback = ({ data }) => {
       req_type: "verify_otp_post_data",
       otp,
       feedback_dict: {
-        customer_rating: rating,
-        customerFeedback: customerFeedback,
-        deliveryRating: deliveryRating,
+        seller_rating: rating,
+        courier_feedback: customerFeedback,
+        seller_feedback: deliveryRating,
       },
     };
     setModalLoading(true);
     const response = await fetch(
-      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api/",
+      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api-v2/",
       {
         method: "POST",
         headers: {
@@ -74,6 +75,8 @@ const Feedback = ({ data }) => {
       setIsModalVisible(false);
       setRating(null);
       setCustomerFeedback(null);
+      setDeliveryRating(null);
+      setFeedbackSubmitted(true);
     } else {
       message.error(json.err);
     }
@@ -82,11 +85,11 @@ const Feedback = ({ data }) => {
 
   const sendOTP = async (type) => {
     const postData = {
-      tracking_id: data.tracking_id,
+      tracking_id: data?.tracking_id,
       req_type: "push_otp",
     };
     const response = await fetch(
-      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api/",
+      "https://pickrr.com/api/pickrr-tracking-feedback-sms-push-verify-api-v2/",
       {
         method: "POST",
         headers: {
@@ -111,14 +114,17 @@ const Feedback = ({ data }) => {
     <>
       <Container>
         <FeedbackContainer>
-          <div className="heading">
+          {!feedbackSubmitted ? ( <div className="heading">
             How was your experience {company_name ? "with" : ""}{" "}
             {company_name ? company_name.toLowerCase() : ""}
-          </div>
+          </div>) : ( <div className="heading">
+              Thanks for sharing your feedback!
+          </div>)}
+         
           <Rate
             allowClear={false}
             value={rating}
-            style={{ color: "#717BAD", fontSize: "32px" }}
+            style={{ color: "#FFC83D", fontSize: "32px" }}
             onChange={(value) => {
               setRating(value);
             }}
@@ -143,7 +149,7 @@ const Feedback = ({ data }) => {
                 rows={4}
                 placeholder="Please submit your feedback (150 characters, max)"
                 onChange={(e) => setCustomerFeedback(e.target.value)}
-                value={setCustomerFeedback}
+                value={customerFeedback}
               />
             </Form.Item>
 

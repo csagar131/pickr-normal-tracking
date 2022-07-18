@@ -10,7 +10,7 @@ import {
 // import { useHistory } from "react-router-dom";
 import { CustomInput, Title } from "~/components/UIElements";
 function LandingSearchPage() {
-  const [input, setInput] = useState("");
+  const [trackingId, setTrackingId] = useState("");
 
   const handleEnterKey = (e) => {
     if (e.keyCode === 13 || e.which === 13) {
@@ -33,10 +33,10 @@ function LandingSearchPage() {
             style={{ marginRight: 10 }}
             placeholder="Enter Tracking ID (Comma separated if multiple)"
             onChange={(e) => {
-              setInput(e.target.value);
+              setTrackingId(e.target.value);
             }}
             size="large"
-            value={input}
+            value={trackingId}
             allowClear
             onPressEnter={handleEnterKey}
           />
