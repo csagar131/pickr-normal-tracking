@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Proxima+Nova");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* font-family: "Proxima Nova"; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.container {
+  /* max-width: 1050px; */
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.MainContainer {
+  /* width: 100%; */
+  /* background-image: url("https://d10srchmli830n.cloudfront.net/1654165817896_0e101a9a-b165-4941-b681-9acc1cd187ab_Mask-group.svg"); */
+}
+
+.logo {
+  font-size: x-large;
+  text-transform: uppercase;
+}
+.footer {
+  position: absolute;
+  bottom: 0px;
+}
