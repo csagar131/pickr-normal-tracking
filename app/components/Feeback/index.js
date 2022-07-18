@@ -116,7 +116,7 @@ const Feedback = ({ data }) => {
         <FeedbackContainer>
           {!feedbackSubmitted ? ( <div className="heading">
             How was your experience {company_name ? "with" : ""}{" "}
-            {company_name ? company_name.toLowerCase() : ""}
+            {company_name ? company_name.toLowerCase() : ""}{"?"}
           </div>) : ( <div className="heading">
               Thanks for sharing your feedback!
           </div>)}
