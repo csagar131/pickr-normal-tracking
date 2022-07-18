@@ -48,7 +48,7 @@ function Document({ children, title }) {
         <meta charSet="utf-8" />
         <link rel="icon" href="https://res.cloudinary.com/pickrr/image/upload/v1617194369/logo/Blue_tat2ry.svg" type="image/png" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        {title ? <title>Pickrr Tracking</title> : null}
+        <title>Pickrr Tracking</title>
         <Meta />
         {typeof document === "undefined" ? "__STYLES__" : null}
         {styles}
