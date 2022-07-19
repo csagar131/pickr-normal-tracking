@@ -42,6 +42,7 @@ const OrderInfocontainer = ({
   data,
   resData,
   id,
+  trackingId
 }) => {
   const isMobileDevice = useMediaQuery({
     query: "(max-device-width: 768px)",
@@ -77,7 +78,7 @@ const OrderInfocontainer = ({
 
               <div className="subcontent">
                 Last updated on{" "}
-                {moment(lastUpdate).format("MMMM Do YYYY, h:mm a")}
+                {moment(new Date(lastUpdate)).format("MMMM Do YYYY, h:mm a")}
               </div>
             </div>
           </div>
@@ -88,7 +89,7 @@ const OrderInfocontainer = ({
                 <div className="delivery-info">
                   {status === "NDR" || status === "OC"
                     ? "-"
-                    : `Arriving on ${moment(expectedDelivery).format(
+                    : `Arriving on ${moment(new Date(expectedDelivery)).format(
                         "MMMM Do YYYY"
                       )}`}
                 </div>
@@ -113,11 +114,11 @@ const OrderInfocontainer = ({
             <Col xl={6} lg={6} md={12} sm={12} xs={12}>
               <OrderItems
                 title="Order Date"
-                content={moment(orderDate).format("MMMM Do YYYY")}
+                content={moment(new Date(orderDate)).format("MMMM Do YYYY")}
               />
             </Col>
             <Col xl={6} lg={6} md={12} sm={12} xs={12}>
-              <OrderItems title="Order ID " content={orderId} />
+              <OrderItems title="Order ID" content={orderId} />
             </Col>
             <Col xl={6} lg={6} md={12} sm={12} xs={12}>
               <OrderItems title="Courier" content={courier} />
@@ -136,14 +137,22 @@ const OrderInfocontainer = ({
                 title="Order Date"
                 content={moment(new Date(orderDate))?.format("MMMM Do YYYY")}
               />
-              <OrderItems title="Order ID " content={orderId} />
+              {/* <OrderItems title="Order ID " content={orderId} /> */}
+              <OrderItem>
+                <div style={{ textAlign : 'end'}} className="title" >Order ID</div>
+                <div className="content" >{orderId}</div>
+              </OrderItem>
             </SpaceBetweenContainer>
             <SpaceBetweenContainer style={{ marginTop: "12px" }}>
-              <OrderItems title="Courier" content={courier} />
-              <OrderItems
-                title="Payment Mode"
-                content={!data?.is_cod ? "Prepaid" : "COD"}
-              />
+            <OrderItem>
+                <div style={{ textAlign : 'start'}} className="title" >Courier</div>
+                <div className="content" >{courier}</div>
+              </OrderItem>
+              
+              <OrderItem>
+                <div style={{ textAlign : 'end'}} className="title" >Payment Mode</div>
+                <div className="content" style={{ textAlign : 'end'}}>{!data?.is_cod ? "Prepaid" : "COD"}</div>
+              </OrderItem>
             </SpaceBetweenContainer>
           </>
         )}
@@ -161,7 +170,7 @@ const OrderInfocontainer = ({
          </ViewButton>
        </div>
       )}
-      <div>{status == "DL" && <Feedback data={data} />}</div>
+      <div>{status == "DL" && <Feedback data={data} trackingId={trackingId} />}</div>
       {(isViewMore || (!isMultiOrder && !isViewMore)) && (
         <StatusContainer id={id}>
           <div className="stepper-container">
@@ -169,7 +178,7 @@ const OrderInfocontainer = ({
           </div>
 
           <div className="brand-details-container">
-            <div className="brand-name">Brand Name</div>
+            <div className="brand-name">{data?.company_name}</div>
             <div className="mode-of-payment">
               <div>Mode of payment :</div>
               <div className="prepaid">{data?.is_cod ? "COD" : "Prepaid"}</div>
@@ -183,13 +192,13 @@ const OrderInfocontainer = ({
                       return (
                         <div className="product-item" key={index}>
                           <FlexContainer style={{ alignItems: "flex-start" }}>
-                            <div style={{ marginRight: 10 }}>{index + 1}</div>
+                            <div style={{ marginRight: 10, fontWeight: 600 }}>{index + 1}</div>
                             <div>
                               <div>{item?.item_name}</div>
                               <div>Qty : {item?.quantity}</div>
                             </div>
                           </FlexContainer>
-                          <div className="prepaid">₹{item?.price}</div>
+                          <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price}</div>
                         </div>
                       );
                     } else {
@@ -198,9 +207,7 @@ const OrderInfocontainer = ({
                           <div className="product-item" key={index}>
                             <FlexContainer>
                               <div
-                                style={{
-                                  marginRight: "10px",
-                                }}
+                                style={{ marginRight: 10, fontWeight: 600 }}
                               >
                                 {index + 1}
                               </div>
@@ -216,7 +223,7 @@ const OrderInfocontainer = ({
                                 </div>
                               </div>
                             </FlexContainer>
-                            <div className="prepaid">₹{item?.price}</div>
+                            <div className="prepaid" style={{fontWeight : '700', color:"#0C3784"}}>₹{item?.price}</div>
                           </div>
                         );
                       }

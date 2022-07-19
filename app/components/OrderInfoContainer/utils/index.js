@@ -13,7 +13,7 @@ export const CheckOrderStatus = (type) => {
     case "OO":
       return "Order Out for Delivery";
     case "DL":
-      return "Order Delivered";
+      return "Your Order has been delivered";
     case "RTO" || "RTD":
       return "Order Returned";
     default:

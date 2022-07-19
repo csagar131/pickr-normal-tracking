@@ -97,6 +97,7 @@ function TrackingDetails() {
                     last_update_from_order_ms,
                     item_list,
                     track_arr,
+                    tracking_id
                   } = trackingData && trackingData;
 
                   return (
@@ -107,13 +108,14 @@ function TrackingDetails() {
                         orderDate={order_created_at}
                         orderId={client_order_id}
                         expectedDelivery={edd_stamp}
-                        lastUpdate={last_update_from_order_ms}
+                        lastUpdate={last_update_from_order_ms || trackingData?.status?.current_status_time}
                         isMultiOrder={isMultiOrder}
                         itemList={item_list}
                         trackArr={track_arr}
                         data={data}
                         resData={trackingData}
                         id={`brand${trackingData?.tracking_id}`}
+                        trackingId={tracking_id}
                       />
                     </MainContainer>
                   );
@@ -126,13 +128,14 @@ function TrackingDetails() {
                     orderDate={data?.order_created_at}
                     orderId={data?.client_order_id}
                     expectedDelivery={data?.edd_stamp}
-                    lastUpdate={data?.last_update_from_order_ms}
+                    lastUpdate={data?.last_update_from_order_ms|| data?.status?.current_status_time}
                     isMultiOrder={isMultiOrder}
                     itemList={data?.item_list}
                     trackArr={data?.track_arr}
                     data={data}
                     resData={data}
                     id={`brand${data?.tracking_id}`}
+                    trackingId={data?.tracking_id}
                   />
                 </MainContainer>
               )}

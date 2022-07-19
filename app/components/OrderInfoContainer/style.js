@@ -109,9 +109,7 @@ export const OrderItem = styled.div`
     border: none;
     padding: 0px;
     font-size: 14px;
-    .content {
-      float: right;
-    }
+    
   }
 `;
 

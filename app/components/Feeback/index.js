@@ -19,7 +19,7 @@ import {
   FaGrinAlt,
 } from "react-icons/fa";
 
-const Feedback = ({ data }) => {
+const Feedback = ({ data, trackingId }) => {
   const { company_name } = data;
   const [customerFeedback, setCustomerFeedback] = useState(null);
   const [deliveryRating, setDeliveryRating] = useState(null);
@@ -48,7 +48,7 @@ const Feedback = ({ data }) => {
 
   const finalSubmit = async (otp) => {
     const postData = {
-      tracking_id: data.tracking_id,
+      tracking_id: trackingId,
       req_type: "verify_otp_post_data",
       otp,
       feedback_dict: {
@@ -85,7 +85,7 @@ const Feedback = ({ data }) => {
 
   const sendOTP = async (type) => {
     const postData = {
-      tracking_id: data?.tracking_id,
+      tracking_id: trackingId,
       req_type: "push_otp",
     };
     const response = await fetch(
@@ -109,6 +109,8 @@ const Feedback = ({ data }) => {
       message.error(json.err);
     }
   };
+  
+  console.log(trackingId, "tracking id");
 
   return (
     <>
