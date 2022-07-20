@@ -16,6 +16,8 @@ export const CheckOrderStatus = (type) => {
       return "Your Order has been delivered";
     case "RTO" || "RTD":
       return "Order Returned";
+    case "LT":
+      return "Shipment Lost";
     default:
       return "Order Initiated";
   }
@@ -31,6 +33,8 @@ export const Color = (orderStatus) => {
       return "#3B9A00";
     case "OC":
       return "#FA5357";
+    case "LT":
+      return '#800000';
     default:
       return "#38446D";
   }
@@ -47,4 +51,5 @@ export const icons = {
   OO: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
   PP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
   SHP: "https://d10srchmli830n.cloudfront.net/1653566838817_22ede491-b980-4146-a07c-5220683f59dd_Vector-(3).svg",
+  LT : "https://d10srchmli830n.cloudfront.net/1657270253214_d2f26fef-6d1c-4f46-8f2c-764fc68b38b4_Group-1116599574-(1).svg"
 };

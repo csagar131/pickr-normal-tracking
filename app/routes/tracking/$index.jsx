@@ -108,7 +108,7 @@ function TrackingDetails() {
                         orderDate={order_created_at}
                         orderId={client_order_id}
                         expectedDelivery={edd_stamp}
-                        lastUpdate={last_update_from_order_ms || trackingData?.status?.current_status_time}
+                        lastUpdate={trackingData?.status?.current_status_time}
                         isMultiOrder={isMultiOrder}
                         itemList={item_list}
                         trackArr={track_arr}
@@ -128,7 +128,7 @@ function TrackingDetails() {
                     orderDate={data?.order_created_at}
                     orderId={data?.client_order_id}
                     expectedDelivery={data?.edd_stamp}
-                    lastUpdate={data?.last_update_from_order_ms|| data?.status?.current_status_time}
+                    lastUpdate={data?.status?.current_status_time}
                     isMultiOrder={isMultiOrder}
                     itemList={data?.item_list}
                     trackArr={data?.track_arr}

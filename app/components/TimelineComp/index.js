@@ -25,6 +25,7 @@ const TimelineComp = ({ trackArr }) => {
     "OC",
     "NDR",
     "RTO",
+    "LT"
   ];
 
   const STATUS_TIME =
@@ -120,7 +121,7 @@ const TimelineComp = ({ trackArr }) => {
         return (
           el?.status_name === "OC" ||
           el?.status_name === "RTO" ||
-          el?.status_name === "DL"
+          el?.status_name === "DL" || el?.status_name === "LT"
         );
       })
     );
@@ -138,7 +139,7 @@ const TimelineComp = ({ trackArr }) => {
               color={
                 index > parentArray?.length - difference?.length - 1
                   ? "#EDF0F9"
-                  : track?.status_name == "OC" || track?.status_name == "NDR"
+                  : track?.status_name == "OC" || track?.status_name == "NDR" || track?.status_name == "LT"
                   ? Color(track?.status_name)
                   : "green"
               }
@@ -153,7 +154,7 @@ const TimelineComp = ({ trackArr }) => {
                       index > parentArray?.length - difference?.length - 1
                         ? "#EDF0F9"
                         : track.status_name == "OC" ||
-                          track.status_name == "NDR"
+                          track.status_name == "NDR" || track?.status_name == "LT"
                         ? Color(track.status_name)
                         : "green",
                   }}
@@ -225,7 +226,7 @@ const TimelineComp = ({ trackArr }) => {
                                 parentArray?.length - difference?.length - 1
                                   ? "#EDF0F9"
                                   : track?.status_name == "OC" ||
-                                    track?.status_name == "NDR"
+                                    track?.status_name == "NDR" || track?.status_name == "LT"
                                   ? Color(track.status_name)
                                   : "green",
                             }}
@@ -248,99 +249,6 @@ const TimelineComp = ({ trackArr }) => {
             </Timeline.Item>
           );
         })}
-
-        {/* <>
-          <Steps
-            progressDot
-            current={statusTobeShown?.length - 1}
-            direction="vertical"
-          >
-            {parentArray?.map((track, index) => {
-              return (
-                <>
-                  <Step
-                    key={index}
-                    onClick={() => {
-                      if (track.status_array.length > 1) {
-                        setShow(!show);
-                      }
-                    }}
-                    style={{
-                      cursor: track.status_array.length > 1 && "pointer",
-                    }}
-                    description={
-                      show && track?.status_array.length > 1 ? (
-                        <>
-                          <HeadingItem>
-                            {track.status_array[0].pickrr_status}{" "}
-                            <span style={{ color: "#EF7E00" }}>
-                              {track.status_array.length > 1 && "(New Update)"}
-                            </span>
-                          </HeadingItem>
-                          <Item>
-                            {moment(track.status_array[0].status_time).format(
-                              "MMMM Do YYYY"
-                            )}
-                          </Item>
-                          <Item>{track.status_array[0].status_location}</Item>
-
-                          <NestedStepper
-                            progressDot
-                            current={track?.status_array?.length}
-                            direction="vertical"
-                          >
-                            {track?.status_array.map((tracking, index) => {
-                              return (
-                                <Step
-                                  key={index}
-                                  title={tracking.pickrr_status}
-                                  description={
-                                    <>
-                                      <SmallItem>
-                                        {moment(tracking.status_time).format(
-                                          "MMMM Do YYYY"
-                                        )}
-                                      </SmallItem>
-                                      <SmallItem>
-                                        {tracking.status_location}
-                                      </SmallItem>
-                                    </>
-                                  }
-                                />
-                              );
-                            })}
-                          </NestedStepper>
-                        </>
-                      ) : (
-                        <Step
-                          description={
-                            <>
-                              <HeadingItem>
-                                {track.status_array[0].pickrr_status}{" "}
-                                <span style={{ color: "#EF7E00" }}>
-                                  {track.status_array.length > 1 &&
-                                    "(New Update)"}
-                                </span>
-                              </HeadingItem>
-                              <Item>
-                                {moment(
-                                  track.status_array[0].status_time
-                                ).format("MMMM Do YYYY")}
-                              </Item>
-                              <Item>
-                                {track.status_array[0].status_location}
-                              </Item>
-                            </>
-                          }
-                        ></Step>
-                      )
-                    }
-                  />
-                </>
-              );
-            })}
-          </Steps>
-        </> */}
       </Container>
     </div>
   );

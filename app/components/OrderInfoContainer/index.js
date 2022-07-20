@@ -83,7 +83,7 @@ const OrderInfocontainer = ({
             </div>
           </div>
           <div className="supportContainer">
-            {status !== "DL" && (
+            {(status !== "DL" && status !== "LT" && status !== "OC") && (
               <div className="expectedContainer">
                 <div className="expected">Expected Delivery </div>
                 <div className="delivery-info">
