@@ -94,7 +94,6 @@ function TrackingDetails() {
                     order_created_at,
                     client_order_id,
                     edd_stamp,
-                    last_update_from_order_ms,
                     item_list,
                     track_arr,
                     tracking_id

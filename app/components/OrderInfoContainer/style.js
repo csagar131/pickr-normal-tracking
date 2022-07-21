@@ -97,7 +97,7 @@ export const OrderItem = styled.div`
   font-size: 16px;
   color: #38446d;
   border-right: 1px solid #c6c8e3;
-  padding: 0px 40px;
+  padding: 0px 12px;
 
   .title {
     font-weight: 400;
