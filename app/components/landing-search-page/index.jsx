@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@remix-run/react";
+import { useNavigate } from "react-router";
+import { notification } from "antd";
 
 import {
   Footer,
@@ -11,11 +13,26 @@ import {
 import { CustomInput, Title } from "~/components/UIElements";
 function LandingSearchPage() {
   const [trackingId, setTrackingId] = useState("");
+  const navigate = useNavigate();
 
   const handleEnterKey = (e) => {
     if (e.keyCode === 13 || e.which === 13) {
       e.target.blur();
-      window.location.href = `/tracking/${trackingId}`;
+      if (!trackingId) {
+        notification.error({ message: "Please enter Tracking ID" });
+        return;
+      } else {
+        navigate(`/tracking/${trackingId}`);
+      }
+    }
+  };
+
+  const handleBtnClick = () => {
+    if (!trackingId) {
+      notification.error({ message: "Please enter Tracking ID" });
+      return;
+    } else {
+      navigate(`/tracking/${trackingId}`);
     }
   };
 
@@ -40,9 +57,7 @@ function LandingSearchPage() {
             allowClear
             onPressEnter={handleEnterKey}
           />
-          <Link to={`/tracking/${trackingId}`}>
-            <CustomButton type="primary">Track Order</CustomButton>
-          </Link>{" "}
+          <CustomButton type="primary" onClick={handleBtnClick} style={{border : 'none'}}>Track Order</CustomButton>
         </div>
         <div className="powered">Powered by Pickrr </div>
       </MainContainer>
