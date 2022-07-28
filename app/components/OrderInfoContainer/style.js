@@ -187,7 +187,6 @@ export const StatusContainer = styled.div`
         display: flex;
         justify-content: space-between;
         margin-top: 17px;
-        margin: 15px;
         align-items: flex-start;
       }
     }

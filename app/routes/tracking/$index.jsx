@@ -57,7 +57,7 @@ function TrackingDetails() {
   };
 
   return (
-    <div>
+    <div style={{ backgroundImage : `url('https://d10srchmli830n.cloudfront.net/1659003938502_d35a17de-8594-4f56-bdda-4bc0900ee55a_grouptrackingbgimg.svg')`,backgroundRepeat:'no-repeat',backgroundPosition : 'bottom'}}>
       <Container>
         <Title>Order Tracking Details</Title>
         <div className="search-container">

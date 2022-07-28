@@ -83,7 +83,7 @@ const OrderInfocontainer = ({
             </div>
           </div>
           <div className="supportContainer">
-            {(status !== "DL" && status !== "LT" && status !== "OC") && (
+            {(status !== "DL" && status !== "LT" && status !== "OC") ?  (
               <div className="expectedContainer">
                 <div className="expected">Expected Delivery </div>
                 <div className="delivery-info">
@@ -94,12 +94,13 @@ const OrderInfocontainer = ({
                       )}`}
                 </div>
               </div>
-            )}
+            ) : <div></div>}
+            <div>
             <a href="mailto:support@pickrr.com?">
               <div
                 className={
                   expectedDelivery !== proposedDate && !isMobileDevice
-                    ? "support support_mobile"
+                    ? "support"
                     : "support"
                 }
                 mail
@@ -107,6 +108,8 @@ const OrderInfocontainer = ({
                 support@pickrr.com
               </div>
             </a>
+            </div>
+           
           </div>
         </Container>
         {!isMobileDevice ? (

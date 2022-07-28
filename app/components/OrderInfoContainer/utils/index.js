@@ -1,11 +1,13 @@
 export const CheckOrderStatus = (type) => {
   switch (type) {
     case "OP":
-      return "Order Received";
+      return "Order Placed";
     case "OC":
       return "Order Cancelled";
-    case "PP" || "SHP":
-      return "Order Dispatched";
+    case "PP":
+      return "Order Picked Up";
+    case "SHP" :
+      return "Order Shipped"
     case "OT":
       return "Order in Transit";
     case "NDR":
@@ -13,7 +15,7 @@ export const CheckOrderStatus = (type) => {
     case "OO":
       return "Order Out for Delivery";
     case "DL":
-      return "Your Order has been delivered";
+      return "Order Delivered";
     case "RTO" || "RTD":
       return "Order Returned";
     case "LT":
