@@ -2,10 +2,11 @@ import { useLoaderData } from "remix";
 import { Title, CustomInput, CustomButton } from "~/components/UIElements";
 import { MainContainer, Container, PoweredContainer } from "./style";
 import OrderInfocontainer from "~/components/OrderInfoContainer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getTrackingDetails } from "~/utils/server.query";
 import { notification } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router";
 
 export const loader = async ({ params }) => {
   const trackingId = params.index;
@@ -22,6 +23,7 @@ function TrackingDetails() {
   const [data, setData] = useState({
     ...loaderData.data,
   });
+  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const [trackingId, setTrackingId] = useState(loaderData.trackingId);
@@ -31,17 +33,24 @@ function TrackingDetails() {
   });
   const isMultiOrder = data?.response_list ? true : false;
 
+  useEffect(() => {
+    setIsLoading(true);
+    setData(loaderData.data)
+    setIsLoading(false)
+  }, [loaderData])
+  
+
   const handleClick = async () => {
     if (!trackingId) {
       notification.error({ message: "Please enter Tracking ID" });
       return;
     } else {
       setIsLoading(true);
-      window.location.href = `/tracking/${trackingId}`;
-      setData({ ...data });
+      navigate(`/tracking/${trackingId}`);
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     if (data?.err) {
       setIsError({ errorStatus: true, message: data.err });
@@ -49,13 +58,18 @@ function TrackingDetails() {
       setIsError({ errorStatus: false, message: "" });
     }
   }, [data]);
+
+
   const handleEnterKey = (e) => {
+    if(!trackingId && (e.keyCode === 13 || e.which === 13)){
+      notification.error({ message: "Please enter Tracking ID" });
+      return;
+    }
     if (e.keyCode === 13 || e.which === 13) {
       e.target.blur();
-      window.location.href = `/tracking/${trackingId}`;
+      navigate(`/tracking/${trackingId}`);
     }
   };
-
   return (
     <div style={{ backgroundImage : `url('https://d10srchmli830n.cloudfront.net/1659003938502_d35a17de-8594-4f56-bdda-4bc0900ee55a_grouptrackingbgimg.svg')`,backgroundRepeat:'no-repeat',backgroundPosition : 'bottom'}}>
       <Container>
@@ -65,6 +79,7 @@ function TrackingDetails() {
             placeholder="Enter Tracking ID (Comma separated if multiple)"
             style={{ marginRight: 10 }}
             onChange={(e) => {
+              console.log("onchange");
               setTrackingId(e.target.value);
             }}
             value={trackingId}
