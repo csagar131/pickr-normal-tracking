@@ -13,7 +13,6 @@ import {
 import { Color } from "../OrderInfoContainer/utils";
 const TimelineComp = ({ trackArr }) => {
   const [currIndex, setCurrIndex] = useState(null);
-  console.log(trackArr, "trackarr");
 
   const validStatuses = [
     "OP",
@@ -233,7 +232,7 @@ const TimelineComp = ({ trackArr }) => {
                           ></div>
                         }
                       >
-                        <SmallItem>{tracking?.pickrr_status} </SmallItem>
+                        <SmallItem>{tracking?.status_body} </SmallItem>
                         <SmallItem>
                           Last updated on{" "}
                           {moment(tracking?.status_time).format(
